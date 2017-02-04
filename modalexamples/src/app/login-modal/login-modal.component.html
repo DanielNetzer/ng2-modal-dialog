@@ -1,0 +1,23 @@
+<!-- Modal Setup -->
+<div class="modal">
+  <div class="modal-content">
+    <h4>Admin login</h4>
+    <a role="button" (click)="onCancel()"><i class="icon ion-close-round"></i></a>
+    <form (ngSubmit)="onSubmit(loginForm.value);" #loginForm="ngForm">
+      <div class="form-group">
+        <label class="sr-only" for="username">Email address</label>
+        <input type="text" class="form-control" id="name" placeholder="Username" name="username" ngModel required>
+      </div>
+      <div class="form-group">
+        <label class="sr-only" for="password">Password</label>
+        <input type="password" class="form-control" id="password" placeholder="Password" name="password" ngModel required>
+      </div>
+      <button type="submit" class="btn btn-default" [disabled]="!loginForm.form.valid">Sign in</button>
+    </form>
+    <h4 style="color:red" *ngIf="!loginStatus">Wrong Credentials! try 'user' as username and 'pass' as password.</h4>
+  </div>
+</div>
+<!-- END Modal Setup -->
+
+<!-- Modal Overlay -->
+<div class="modal-overlay"></div>

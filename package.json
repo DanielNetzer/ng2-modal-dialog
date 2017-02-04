@@ -3,6 +3,7 @@
   "version": "1.0.1",
   "description": "Angular 2 Factory made Modal window",
   "main": "modal.module.ts",
+  "repository": "https://github.com/DanielNetzer/ng2-modal-dialog",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -16,5 +17,8 @@
     "modal"
   ],
   "author": "Daniel Netzer <daniel@peak.studio>",
+  "contributors": [
+    "Ron Netzer <ron@peak.studio>"
+  ],
   "license": "MIT"
 }
