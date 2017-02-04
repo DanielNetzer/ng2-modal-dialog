@@ -2,25 +2,12 @@
 <html>
 
 <head>
-  <!-- This stores the URL the user was attempting to go to in sessionStorage,
-    and then redirects all 404 responses to the app’s index.html page -->
-  <!-- See http://www.backalleycoder.com/2016/05/13/sghpa-the-single-page-app-hack-for-github-pages/ -->
-  <script>
-    sessionStorage.redirect = location.href;
-
-  </script>
-  <meta http-equiv="refresh" content="0;URL='https://DanielNetzer.github.io/ng2-modal-dialog/modalexamples'"></meta>
-  <script>
-    // See http://www.backalleycoder.com/2016/05/13/sghpa-the-single-page-app-hack-for-github-pages/
-    (function () {
-      var redirect = sessionStorage.redirect;
-      delete sessionStorage.redirect;
-      if (redirect && redirect != location.href) {
-        history.replaceState(null, null, redirect);
-      }
-    })();
-
-  </script>
+  <meta charset="utf-8">
+  <title>Angular2 Factory Made Modal Dialog</title>
+  <base href="/ng2-modal-dialog/modalexamples/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet">
 </head>
 
 <body>
