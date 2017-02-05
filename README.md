@@ -14,11 +14,14 @@ This project is very much still a work in progress.
 ---
 before you install please make sure you have an up and running angular2 projects,
 highly recomended using the [angular-cli](https://github.com/angular/angular-cli) to start one .
+
 ```
 npm install --save ng2-modal-dialog
 ```
+
 ### Usage
 ---
+
 * Import the module to your ```app.module.ts``` file and the modal component.
 ```TypeScript
 import { ModalModule } from 'ng2-modal-dialog/modal.module';
@@ -33,6 +36,21 @@ imports: [
     ModalModule
   ],
 ```
+
+* Add a placeholder in the ```app.componenet.html```
+
+```html
+<h1>
+  {{title}}
+</h1>
+<a href="javascript:void(0);" (click)="openLoginModal(passedParameter = {
+    username: 'user',
+    password: 'pass'
+  })">Login</a>
+  <!-- the place holder for all modals that will be opened -->
+<modal-placeholder></modal-placeholder>
+```
+
 * In the parent component of the modal you will need to import the following.
 
 ```TypeScript
@@ -53,6 +71,7 @@ constructor(private modalService: ModalService) { }
 ```
 
 * ```login-modal.componenet.ts```
+
 ```TypeScript
 import { Component } from '@angular/core';
 import { Modal } from 'ng2-modal-dialog/modal.module';
@@ -92,6 +111,7 @@ export class LoginModalComponent {
 ```
 
 * ```login-modal.componenet.html```
+
 ```html
 <!-- Modal Setup -->
 <div class="modal">
@@ -119,6 +139,7 @@ export class LoginModalComponent {
 ```
 
 * ```login-modal.componenet.css```
+
 ```css
 .modal {
     /* This way it could be display flex or grid or whatever also. */
