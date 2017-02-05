@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Modal } from 'ng2-modal-dialog/modal.module';
 
 @Component({
@@ -33,5 +33,4 @@ export class LoginModalComponent {
       this.loginStatus = false;
     }
   }
-
 }
