@@ -49,7 +49,7 @@ export class ModalService {
     selector: "modal-placeholder",
     templateUrl: './modal.module.html',
     // TODO: add basic scss style.
-    styleUrls: ['./modal.module.scss']
+    styleUrls: ['./modal.module.css']
 })
 export class ModalPlaceholderComponent implements OnInit {
     @ViewChild("modalplaceholder", { read: ViewContainerRef }) viewContainerRef;
