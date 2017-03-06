@@ -1,8 +1,8 @@
 import {
-            ComponentFactory, Component, NgModule, ViewChild,
-            OnInit, ViewContainerRef, Compiler, ReflectiveInjector,
-            Injectable, Injector, ComponentRef
-        } from "@angular/core";
+    ComponentFactory, Component, NgModule, ViewChild,
+    OnInit, ViewContainerRef, Compiler, ReflectiveInjector,
+    Injectable, Injector, ComponentRef
+} from "@angular/core";
 import { Observable, Subject, BehaviorSubject, ReplaySubject } from "rxjs/Rx";
 
 // the modalservice
@@ -23,24 +23,21 @@ export class ModalService {
         this.injector = injector;
     }
 
-    create<T>(module: any, component: any, parameters?: Object): Observable<ComponentRef<T>> {
+    createFromFactory<T>(componentFactory: ComponentFactory<T>,
+        parameters?: Object): Observable<ComponentRef<T>> {
         let componentRef$ = new ReplaySubject();
-        this.compiler.compileModuleAndAllComponentsAsync(module)
-            .then(factory => {
-                let componentFactory = factory.componentFactories.filter(item => item.componentType === component)[0];
-                const childInjector = ReflectiveInjector.resolveAndCreate([], this.injector);
-                let componentRef = this.vcRef.createComponent(componentFactory, 0, childInjector);
-                Object.assign(componentRef.instance, parameters); // pass the @Input parameters to the instance
-                this.activeInstances++;
-                componentRef.instance["componentIndex"] = this.activeInstances;
-                componentRef.instance["destroy"] = () => {
-                    this.activeInstances--;
-                    componentRef.destroy();
-                };
-                componentRef$.next(componentRef);
-                componentRef$.complete();
-            });
-        return <Observable<ComponentRef<T>>>componentRef$.asObservable();
+        const childInjector = ReflectiveInjector.resolveAndCreate([], this.injector);
+        let componentRef = this.vcRef.createComponent(componentFactory, 0, childInjector);
+        // pass the @Input parameters to the instance
+        Object.assign(componentRef.instance, parameters);
+        this.activeInstances++;
+        componentRef.instance["destroy"] = () => {
+            this.activeInstances--;
+            componentRef.destroy();
+        };
+        componentRef$.next(componentRef);
+        componentRef$.complete();
+        return componentRef$.asObservable();
     }
 }
 
