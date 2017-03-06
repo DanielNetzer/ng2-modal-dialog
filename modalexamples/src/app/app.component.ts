@@ -16,6 +16,9 @@ export class AppComponent {
   title = 'ng2-modal-dialog package example';
 
   openLoginModal(userCreds): void {
-    this.modalService.create(AppModule, LoginModalComponent, {userCreds});
+    let loginModal = {
+
+    }
+    this.modalService.createFromFactory(LoginModalComponent);
   }
 }
