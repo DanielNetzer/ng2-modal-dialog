@@ -1,6 +1,6 @@
 {
   "name": "ng2-modal-dialog",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "AngularX Factory made Modal window",
   "main": "modal.module.ts",
   "repository": "https://github.com/DanielNetzer/ng2-modal-dialog",
