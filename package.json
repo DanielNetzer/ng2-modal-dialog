@@ -1,22 +1,24 @@
 {
   "name": "ng2-modal-dialog",
-  "version": "1.0.5",
-  "description": "Angular 2 Factory made Modal window",
+  "version": "2.0.0",
+  "description": "AngularX Factory made Modal window",
   "main": "modal.module.ts",
   "repository": "https://github.com/DanielNetzer/ng2-modal-dialog",
   "scripts": {
     "test": "ng test"
   },
   "dependencies": {
-    "@angular/core": "^2.3.1",
-    "rxjs": "^5.0.1"
+    "@angular/core": "^4.3.6",
+    "rxjs": "^5.4.3"
   },
   "keywords": [
     "angular2",
     "ng2",
-    "modal"
+    "modal",
+    "dialog",
+    "Factory"
   ],
-  "author": "Daniel Netzer <daniel@peak.studio>",
+  "author": "Daniel Netzer <daniel.netzer7@gmail.com>",
   "contributors": [
     "Ron Netzer <ron@peak.studio>"
   ],

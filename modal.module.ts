@@ -26,7 +26,7 @@ export class ModalService {
     create<T>(module: any, component: any, parameters?: Object):
         Observable<ComponentRef<T>> {
         // we return a stream so we can  access the componentref
-        let componentRef$ = new ReplaySubject();
+        let componentRef$ = new ReplaySubject<ComponentRef<T>>();
         // compile the component based on its type and
         // create a component factory
         this.compiler.compileModuleAndAllComponentsAsync(module)
@@ -55,14 +55,14 @@ export class ModalService {
                 componentRef$.next(componentRef);
                 componentRef$.complete();
             });
-        return componentRef$;
+        return componentRef$.asObservable();
     }
 
     createFromFactory<T>(componentFactory: ComponentFactory<T>,
         parameters?: Object): Observable<ComponentRef<T>> {
-        let componentRef$ = new ReplaySubject();
+        let componentRef$ = new ReplaySubject<ComponentRef<T>>();
         const childInjector = ReflectiveInjector.resolveAndCreate([], this.injector);
-        let componentRef = this.vcRef.createComponent(componentFactory, 0, childInjector);
+        let componentRef: any = this.vcRef.createComponent(componentFactory, 0, childInjector);
         // pass the @Input parameters to the instance
         Object.assign(componentRef.instance, parameters);
         this.activeInstances++;
@@ -79,12 +79,10 @@ export class ModalService {
 // this is the modal-placeholder, it will container the created modals
 @Component({
     selector: "modal-placeholder",
-    templateUrl: './modal.module.html',
-    // TODO: add basic scss style.
-    styleUrls: ['./modal.module.css']
+    templateUrl: './modal.module.html'
 })
 export class ModalPlaceholderComponent implements OnInit {
-    @ViewChild("modalplaceholder", { read: ViewContainerRef }) viewContainerRef;
+    @ViewChild("modalplaceholder", { read: ViewContainerRef }) viewContainerRef: ViewContainerRef;
 
     constructor(private modalService: ModalService, private injector: Injector) {
 
@@ -105,7 +103,7 @@ export class ModalContainer {
     }
 }
 export function Modal() {
-    return function (target) {
+    return function (target: any) {
         Object.assign(target.prototype, ModalContainer.prototype);
     };
 }
