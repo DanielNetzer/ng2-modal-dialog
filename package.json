@@ -5,7 +5,10 @@
   "main": "modal.module.ts",
   "repository": "https://github.com/DanielNetzer/ng2-modal-dialog",
   "scripts": {
-    "test": "ng test"
+    "transpile": "ngc",
+    "package": "rollup -c",
+    "minify": "uglifyjs dist/bundles/ngmodaldialog.umd.js --screw-ie8 --compress --mangle --comments --output dist/bundles/ngmodaldialog.umd.min.js",
+    "build": "npm run transpile && npm run package && npm run minify"
   },
   "dependencies": {
     "@angular/core": "^4.3.6",
@@ -22,5 +25,12 @@
   "contributors": [
     "Ron Netzer <ron@peak.studio>"
   ],
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "@angular/compiler": "4.4.3",
+    "@angular/compiler-cli": "4.4.3",
+    "rollup": "0.50.0",
+    "typescript": "2.5.3",
+    "uglify-js": "3.1.2"
+  }
 }
