@@ -76,10 +76,10 @@ export class ModalService {
     }
 }
 
-// this is the modal-placeholder, it will container the created modals
+// this is the modal-placeholder, it will contain the created modals
 @Component({
     selector: "modal-placeholder",
-    templateUrl: "./modal.module.html"
+    template: "<div #modalplaceholder></div>"
 })
 export class ModalPlaceholderComponent implements OnInit {
     @ViewChild("modalplaceholder", { read: ViewContainerRef }) viewContainerRef: ViewContainerRef;
