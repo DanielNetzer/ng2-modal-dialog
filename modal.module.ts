@@ -1,5 +1,5 @@
 import {
-    ComponentFactory, Component, NgModule, ViewChild,
+    NgModuleRef, ComponentFactory, Component, NgModule, ViewChild,
     OnInit, ViewContainerRef, Compiler, ReflectiveInjector,
     Injectable, Injector, ComponentRef
 } from "@angular/core";
@@ -10,9 +10,14 @@ import { Observable, Subject, BehaviorSubject, ReplaySubject } from "rxjs/Rx";
 export class ModalService {
     private vcRef: ViewContainerRef;
     private injector: Injector;
+    private amRef: NgModuleRef<any>;
     public activeInstances: number = 0;
 
-    constructor(private compiler: Compiler) {
+    constructor(private compiler: Compiler, private moduleRef: NgModuleRef<any>) {
+    }
+
+    registerAppModuleRef(amRef: NgModuleRef<any>): void {
+        this.amRef = amRef;
     }
 
     registerViewContainerRef(vcRef: ViewContainerRef): void {
@@ -23,13 +28,13 @@ export class ModalService {
         this.injector = injector;
     }
 
-    create<T>(module: any, component: any, parameters?: Object):
+    create<T>(component: any, parameters?: Object):
         Observable<ComponentRef<T>> {
         // we return a stream so we can  access the componentref
         let componentRef$: ReplaySubject<ComponentRef<T>> = new ReplaySubject<ComponentRef<T>>();
         // compile the component based on its type and
         // create a component factory
-        this.compiler.compileModuleAndAllComponentsAsync(module)
+        this.compiler.compileModuleAndAllComponentsAsync(this.moduleRef.instance)
             .then(factory => {
                 // look for the componentfactory in the modulefactory
                 let componentFactory: ComponentFactory<any> = factory.componentFactories
@@ -78,11 +83,54 @@ export class ModalService {
 
 // this is the modal-placeholder, it will contain the created modals
 @Component({
-    selector: "modal-placeholder",
-    template: "<div #modalplaceholder></div>"
+    selector: "app-root",
+    template: "<div class='ng2-modal'>" +
+    "<div class='ng2-modal-content'>" +
+    "<div #modalplaceholder></div>" +
+    "</div></div>" +
+    "<div class='ng2-modal-overlay'></div>",
+    styles: [
+        ".ng2-modal {" +
+        "/* This way it could be display flex or grid or whatever also. */" +
+        "display: block;" +
+        "/* Probably need media queries here */" +
+        "width: 600px;" +
+        "max-width: 100%;" +
+        "height: 400px;" +
+        "max - height: 100%;" +
+        "position: fixed;" +
+        "z-index: 9000;" +
+        "left: 50 %;" +
+        "top: 50 %;" +
+        "/* Use this for centering if unknown width/height */" +
+        "transform: translate(-50 %, -50 %);" +
+        "/* If known, negative margins are probably better (less chance of blurry text). */" +
+        "/* margin: -200px 0 0 -200px; */" +
+        "background: white;" +
+        "box-shadow: 0 0 60px 10px rgba(0, 0, 0, 0.9);" +
+        "}",
+        ".ng2 - modal - content {" +
+        "position: absolute;" +
+        "top: 10 %;" +
+        "left: 0;" +
+        "width: 100 %;" +
+        "height: 100 %;" +
+        "overflow: auto;" +
+        "padding: 20px 50px 20px 20px;" +
+        "}",
+        ".ng2 - modal - overlay {" +
+        "position: fixed;" +
+        "top: 0;" +
+        "left: 0;" +
+        "width: 100 %;" +
+        "height: 100 %;" +
+        "z-index: 8000;" +
+        "background: rgba(0, 0, 0, 0.6);" +
+        "}"
+    ]
 })
 export class ModalPlaceholderComponent implements OnInit {
-    @ViewChild("modalplaceholder", { read: ViewContainerRef }) viewContainerRef: ViewContainerRef;
+    @ViewChild("approot", { read: ViewContainerRef }) viewContainerRef: ViewContainerRef;
 
     constructor(private modalService: ModalService, private injector: Injector) {
 
