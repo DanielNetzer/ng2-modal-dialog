@@ -1,7 +1,7 @@
 {
   "name": "ng2-modal-dialog",
-  "version": "2.0.1",
-  "description": "AngularX Factory made Modal window",
+  "version": "2.0.5",
+  "description": "AngularX Factory Made Modal Dialog",
   "main": "modal.module.ts",
   "repository": "https://github.com/DanielNetzer/ng2-modal-dialog",
   "scripts": {
@@ -11,12 +11,13 @@
     "build": "npm run transpile && npm run package && npm run minify"
   },
   "dependencies": {
-    "@angular/core": "^4.3.6",
-    "rxjs": "^5.4.3"
+    "@angular/core": "5.0.1",
+    "rxjs": "5.5.2"
   },
   "keywords": [
+    "angular5",
+    "angular4",
     "angular2",
-    "ng2",
     "modal",
     "dialog",
     "Factory"
@@ -27,10 +28,10 @@
   ],
   "license": "MIT",
   "devDependencies": {
-    "@angular/compiler": "4.4.3",
-    "@angular/compiler-cli": "4.4.3",
-    "rollup": "0.50.0",
-    "typescript": "2.5.3",
-    "uglify-js": "3.1.2"
+    "@angular/compiler": "5.0.1",
+    "@angular/compiler-cli": "5.0.1",
+    "rollup": "0.51.3",
+    "typescript": "2.6.1",
+    "uglify-js": "3.1.8"
   }
 }

@@ -24,10 +24,11 @@ export class AppComponent {
 
   openLoginModal() {
     console.log('Opening Modal');
-    const loginModal = this.modalService.create(LoginModalComponent, { modalParams: this.modalParams }).subscribe(() => {
-      console.log('Modal Opened Successfully');
-    }, (err) => {
-      console.error(err);
-    });
+    const loginModal = this.modalService.create(LoginModalComponent, { modalParams: this.modalParams })
+      .subscribe(() => {
+        console.log('Modal Opened Successfully');
+      }, (err) => {
+        console.error(err);
+      });
   }
 }

@@ -12,8 +12,8 @@ export const ModalModuleNgFactory:i0.NgModuleFactory<i1.ModalModule> = i0.ɵcmf(
     ([] as any[]),(_l:any) => {
       return i0.ɵmod([i0.ɵmpd(512,i0.ComponentFactoryResolver,i0.ɵCodegenComponentFactoryResolver,
           [[8,([] as any[])],[3,i0.ComponentFactoryResolver],i0.NgModuleRef]),i0.ɵmpd(4608,
-          i1.ModalService,i1.ModalService,[i0.Compiler,i0.NgModuleRef]),i0.ɵmpd(512,
-          i1.ModalModule,i1.ModalModule,([] as any[]))]);
+          i1.ModalService,i1.ModalService,[i0.Compiler]),i0.ɵmpd(512,i1.ModalModule,
+          i1.ModalModule,([] as any[]))]);
     });
 const styles_ModalPlaceholderComponent:any[] = ['.ng2-modal[_ngcontent-%COMP%] {display: block;width: 600px;max-width: 100%;height: 400px;max - height: 100%;position: fixed;z-index: 9000;left: 50 %;top: 50 %;transform: translate(-50 %, -50 %);background: white;box-shadow: 0 0 60px 10px rgba(0, 0, 0, 0.9);}',
     '.ng2[_ngcontent-%COMP%]   -[_ngcontent-%COMP%]   modal[_ngcontent-%COMP%]   -[_ngcontent-%COMP%]   content[_ngcontent-%COMP%] {position: absolute;top: 10 %;left: 0;width: 100 %;height: 100 %;overflow: auto;padding: 20px 50px 20px 20px;}',

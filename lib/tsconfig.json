@@ -23,8 +23,8 @@
             "dom"
         ]
     },
-    "files": [
-        "index.ts"
+    "include": [
+        "./*"
     ],
     "angularCompilerOptions": {
         "strictMetadataEmit": true
